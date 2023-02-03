@@ -4,12 +4,22 @@ import patchData from "../../hooks/patchData";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthenContext";
 
-const CommentForm = ({ id, socket, rating, name, setReply, send, comment, userId }) => {
-  const {user} = useContext(AuthContext)
+const CommentForm = ({
+  id,
+  socket,
+  rating,
+  name,
+  setReply,
+  send,
+  comment,
+  userId,
+}) => {
+  const { user } = useContext(AuthContext);
   const nameRef = useRef(user?.username);
   const contentRef = useRef();
   useEffect(() => {
-    if(user) {}
+    if (user) {
+    }
     if (name) {
       contentRef.current.innerHTML = `
         <a href="#!"
@@ -19,7 +29,7 @@ const CommentForm = ({ id, socket, rating, name, setReply, send, comment, userId
           >${name}: </a>
       `;
     }
-  }, [name]);
+  }, [name, user]);
 
   const commentSubmit = async () => {
     const username = nameRef.current.value;
@@ -70,7 +80,7 @@ const CommentForm = ({ id, socket, rating, name, setReply, send, comment, userId
   return (
     <div className="form_input">
       <p>Name</p>
-      <input type="text" ref={nameRef} defaultValue={nameRef.current}/>
+      <input type="text" ref={nameRef} defaultValue={nameRef.current} />
 
       <p>Content</p>
       <div
