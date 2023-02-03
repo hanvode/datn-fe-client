@@ -1,0 +1,89 @@
+.menu{
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.418);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.mContainer{
+      max-height: 380px;
+      background-color: white;
+      padding: 20px;
+      position: relative;
+      overflow: auto;
+}
+.mClose{
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+}
+.mItem{
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      padding: 20px;
+      
+}
+.mItemImg img{
+      width: 76px;
+      height: 76px;
+      /* border-radius: 50%; */
+}
+.mItemInfo{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 200px;
+}
+.mTitle{
+      font-weight: 500;
+}
+.mDesc{
+      font-weight: 300;
+}
+
+.mPrice{
+      font-weight: 500;
+}
+.mCheckEmpty{
+      display: flex;
+      flex-wrap: wrap;
+}
+.food{
+      display: flex;
+      flex-direction: column;
+      width: 60px;
+      gap: 5px;
+}
+.noFood{
+      display: none;
+}
+.mEmpty{
+      font-size: 12px;
+      color: red;
+      text-align: center;
+
+}
+.mNoEmpty {
+      font-size: 12px;
+      color: green;
+      text-align: center;
+      
+}
+.mButton{
+      border: none;
+      padding: 10px 20px;
+      background-color:  #0071c2;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius:  5px;
+      width: 100%;
+      margin-top: 20px;
+}

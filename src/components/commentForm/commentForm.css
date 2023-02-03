@@ -1,0 +1,21 @@
+.form_input {
+  margin: 10px 0;
+}
+.form_input input {
+  width: 701px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  min-height: 40px;
+  outline: none;
+}
+.form_input .button {
+  border: none;
+  padding: 10px 20px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 0;
+}

@@ -1,0 +1,101 @@
+.edit {
+  width: 100%;
+  display: flex;
+  
+}
+.editContainer {
+  flex: 6;
+}
+
+.editTop,
+.editBottom {
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 80px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+.editTop h1 {
+  color: black;
+  font-size: 35px;
+}
+
+.editLeft {
+  flex: 1;
+  text-align: center;
+}
+.editLeft img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.editRight {
+  flex: 2;
+  padding: 0px 20px;
+}
+.editRight form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+.editFormInput {
+  width: 40%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+}
+.editFormInput.success {
+  border-bottom-color: #2691d9;
+}
+.editFormInput.error {
+  border-bottom-color: #e74c3c;
+}
+.editFormInput label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.editIcon {
+  cursor: pointer;
+}
+
+.editFormInput input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  outline: none;
+
+}
+.editFormInput small {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 3px;
+  color: #e74c3c;
+}
+.editFormInput span::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: 0.5s;
+}
+.editFormInput input:focus ~ span::before {
+  width: 100%;
+}
+.editButton {
+  width: 120px;
+  padding: 10px;
+  border: none;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}

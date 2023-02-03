@@ -1,0 +1,19 @@
+.listContainerF {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.listWrapperF {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.fTitle {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 50px;
+  text-align: center;
+}
