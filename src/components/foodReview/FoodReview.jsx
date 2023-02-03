@@ -3,7 +3,7 @@ import "./foodReview.css";
 import { Link } from "react-router-dom";
 
 const FoodReview = () => {
-  const featuredHotel = useFetch(`/hotel?featured=true&limit=4`);
+  const featuredHotel = useFetch(`hotel?featured=true&limit=4`);
   return (
     <div className="fp">
       {featuredHotel.loading ? (

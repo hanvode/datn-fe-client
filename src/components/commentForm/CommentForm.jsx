@@ -3,6 +3,7 @@ import "./commentForm.css";
 import patchData from "../../hooks/patchData";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthenContext";
+import { API_URL } from "../../hooks/config";
 
 const CommentForm = ({
   id,
@@ -53,7 +54,7 @@ const CommentForm = ({
       userId,
     });
     if (send === "replyComment") {
-      await axios.post(`/comment/reply`, {
+      await axios.post(`${API_URL}/comment/reply`, {
         username,
         content,
         hotelId: id,
@@ -62,7 +63,7 @@ const CommentForm = ({
         userId,
       });
     } else {
-      await axios.post(`/comment`, {
+      await axios.post(`${API_URL}/comment`, {
         username,
         content,
         hotelId: id,
@@ -72,7 +73,7 @@ const CommentForm = ({
       });
     }
     if (rating && rating !== 0) {
-      patchData(`/hotel/${id}`, { rating });
+      patchData(`hotel/${id}`, { rating });
     }
     contentRef.current.innerHTML = "";
     if (setReply) setReply(false);

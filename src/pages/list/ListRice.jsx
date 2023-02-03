@@ -11,6 +11,7 @@ import Footer from "../../components/footer/Footer";
 import MailList from "../../components/mailList/MailList";
 import Sort from "../../components/sort/Sort";
 import Genre from "../../components/genre/Genre";
+import { API_URL } from "../../hooks/config";
 
 const ListRice = () => {
   const location = useLocation();
@@ -33,7 +34,7 @@ const ListRice = () => {
     const getAllHotels = async () => {
       try {
         const { data } = await axios.get(
-          `/hotel/all?page=${page}&sort=${sort.sort},${
+          `${API_URL}/hotel/all?page=${page}&sort=${sort.sort},${
             sort.order
           }&genre=${filterGenre.toString()}&search=${options.destination}&min=${
             options.minimum
@@ -50,7 +51,7 @@ const ListRice = () => {
   const handleClick = async () => {
     setPage(1);
     const { data } = await axios.get(
-      `/hotel/all?page=${page}&sort=${sort.sort},${
+      `${API_URL}/hotel/all?page=${page}&sort=${sort.sort},${
         sort.order
       }&genre=${filterGenre.toString()}&search=${options.destination}&min=${
         options.minimum

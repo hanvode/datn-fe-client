@@ -25,6 +25,7 @@ import Loading from "./../../components/images/loading.gif";
 import axios from "axios";
 import Heart from "../../components/images/heart.svg";
 import HeartFilled from "../../components/images/heartFilled.svg";
+import { API_URL } from "../../hooks/config";
 
 const ENDPOINT = "https://datn-comment-realtime.onrender.com/"
 
@@ -38,7 +39,7 @@ const Rice = () => {
   const [page, setPage] = useState(1);
   const pageEnd = useRef();
 
-  const { data } = useFetch(`/hotel/find/${id}`);
+  const { data } = useFetch(`hotel/find/${id}`);
   const [loading, setLoading] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
   const [follow, setFollow] = useState(user?.followings.includes(id));
@@ -53,7 +54,7 @@ const Rice = () => {
     setLoading(true);
     const getAllComments = async () => {
       try {
-        const { data } = await axios.get(`/comment/${id}?limit=${page * 5}`);
+        const { data } = await axios.get(`${API_URL}/comment/${id}?limit=${page * 5}`);
         setComments(data.comments);
         setLoading(false);
       } catch (error) {
@@ -154,13 +155,13 @@ const Rice = () => {
         navigate("/login");
       } else {
         if (follow) {
-          const res = await axios.put(`/user/${id}/unfollow`, {
+          const res = await axios.put(`${API_URL}/user/${id}/unfollow`, {
             userId: user?._id,
           });
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
           setFollow(false);
         } else {
-          const res = await axios.put(`/user/${id}/follow`, {
+          const res = await axios.put(`${API_URL}/user/${id}/follow`, {
             userId: user?._id,
           });
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });

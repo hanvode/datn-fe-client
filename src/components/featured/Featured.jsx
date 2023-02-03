@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch.js";
 import "./featured.css";
 
 const Featured = () => {
-  const countCity = useFetch("/hotel/countByCity");
+  const countCity = useFetch("hotel/countByCity");
   const navigate = useNavigate();
   const images = [
     "https://media1.nguoiduatin.vn/media/ngac-kim-giang/2021/03/28/top-5-nha-hang-sang-trong-ha-noi-steak1.jpg",

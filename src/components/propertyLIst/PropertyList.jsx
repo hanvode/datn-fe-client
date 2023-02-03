@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch.js";
 import "./propertyList.css";
 
 const PropertyList = () => {
-  const typeCount = useFetch("/hotel/countByType");
+  const typeCount = useFetch("hotel/countByType");
   const navigate = useNavigate();
   const handleClickType = (e) => {
     navigate("/list-rice", {

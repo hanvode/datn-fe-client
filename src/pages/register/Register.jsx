@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { checkLength, checkRequired } from "../../components/validate/ValidateForm";
+import { API_URL } from "../../hooks/config";
 
 const Register = () => {
   const [file, setFile] = useState("");
@@ -44,7 +45,7 @@ const Register = () => {
       let inputClassName = "reFormInput"
       if (!checkRequired(inputArr,inputClassName)) {
         if (!checkLength(e.target.form[4], 4,inputClassName)) {
-          await axios.post("/auth/register", newUser);
+          await axios.post(`${API_URL}/auth/register`, newUser);
           navigate("/login");
         }
       }

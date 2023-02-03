@@ -30,8 +30,8 @@ const Header = ({ type }) => {
   const { dispatch } = useContext(SearchContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const city = useFetch("/hotel/findCity");
-  const category = useFetch("/hotel/findType");
+  const city = useFetch("hotel/findCity");
+  const category = useFetch("hotel/findType");
   // console.log(city)
 
   const handleChangeDistance = (e) => {

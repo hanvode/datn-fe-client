@@ -3,13 +3,14 @@ import React from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthenContext";
+import { API_URL } from "../../hooks/config";
 import "./navbar.css";
 
 const Navbar = () => {
   const { user, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleLogout = async () => {
-    await axios.post("/auth/logout")
+    await axios.post(`${API_URL}/auth/logout`)
     dispatch({ type: "LOGOUT" });
     navigate("/");
   };

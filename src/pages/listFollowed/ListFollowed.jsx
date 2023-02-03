@@ -7,6 +7,7 @@ import MailList from "../../components/mailList/MailList";
 import Navbar from "../../components/navbar/Navbar";
 import SearchItem from "../../components/searchItem/SearchItem";
 import { AuthContext } from "../../context/AuthenContext";
+import { API_URL } from "../../hooks/config";
 
 const ListFollowed = () => {
   const [list, setList] = useState([]);
@@ -15,7 +16,7 @@ const ListFollowed = () => {
   useEffect(() => {
     const getAllHotelFollowed = async () => {
       try {
-        const { data } = await axios.get(`/user/all-followed/${user._id}`);
+        const { data } = await axios.get(`${API_URL}/user/all-followed/${user._id}`);
         setList(data);
       } catch (error) {
         console.log(error);

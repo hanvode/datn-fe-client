@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { checkLengthLogin, checkRequiredLogin } from "../../components/validate/ValidateForm";
 import { AuthContext } from "../../context/AuthenContext";
+import { API_URL } from "../../hooks/config";
 import "./login.css";
 
 const Login = () => {
@@ -28,7 +29,7 @@ const Login = () => {
       if (!checkLengthLogin(e.target.form[1], 4,inputClassName)) {
         dispatch({ type: "LOGIN_START" });
         try {
-          const res = await axios.post("/auth/login", credentials);
+          const res = await axios.post(`${API_URL}/auth/login`, credentials);
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
           navigate("/");
         } catch (error) {

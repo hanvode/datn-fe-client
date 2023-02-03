@@ -5,11 +5,12 @@ import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthenContext";
+import { API_URL } from "../../hooks/config";
 
 const Menu = ({ setOpen, hotelId }) => {
   const { user } = useContext(AuthContext);
-  const menu = useFetch(`/hotel/menu/${hotelId}`);
-  const menuList = useFetch(`/hotel/menu-list/${hotelId}`);
+  const menu = useFetch(`hotel/menu/${hotelId}`);
+  const menuList = useFetch(`hotel/menu-list/${hotelId}`);
   const [empty, setEmpty] = useState([]);
 
   // check-box example
@@ -28,7 +29,7 @@ const Menu = ({ setOpen, hotelId }) => {
     try {
       await Promise.all(
         empty.map((foodId, index) => {
-          const res = axios.put(`/hotel/isEmpty/${foodId[0]}`, {
+          const res = axios.put(`${API_URL}/hotel/isEmpty/${foodId[0]}`, {
             checked: foodId[1],
           });
           return res.data;

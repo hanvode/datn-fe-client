@@ -9,6 +9,7 @@ import {
   checkLength,
   checkRequired,
 } from "../../components/validate/ValidateForm";
+import { API_URL } from "../../hooks/config";
 
 const EditUser = () => {
   const { user, dispatch } = useContext(AuthContext);
@@ -49,7 +50,7 @@ const EditUser = () => {
       let inputClassName = "editFormInput";
       if (!checkRequired(inputArr, inputClassName)) {
         if (!checkLength(e.target.form[4], 4, inputClassName)) {
-          const res = await axios.put(`/user/${info._id}`, newUser);
+          const res = await axios.put(`${API_URL}/user/${info._id}`, newUser);
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
           navigate("/");
         }
