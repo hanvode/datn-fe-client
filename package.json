@@ -48,5 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://datn-hotel-api.onrender.com/api"
+  "proxy": "https://localhost:8800/api"
 }
