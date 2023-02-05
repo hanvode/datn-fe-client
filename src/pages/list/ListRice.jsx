@@ -11,6 +11,7 @@ import Footer from "../../components/footer/Footer";
 import MailList from "../../components/mailList/MailList";
 import Sort from "../../components/sort/Sort";
 import Genre from "../../components/genre/Genre";
+import Loading from "./../../components/images/loading.gif";
 import { API_URL } from "../../hooks/config";
 
 const ListRice = () => {
@@ -30,8 +31,10 @@ const ListRice = () => {
   const [sort, setSort] = useState({ sort: "rating", order: "desc" });
   const [filterGenre, setFilterGenre] = useState([location.state.genre] || []);
   const [page, setPage] = useState(1);
+  const [loading , setLoading] = useState(false)
   useEffect(() => {
     const getAllHotels = async () => {
+      setLoading(true)
       try {
         const { data } = await axios.get(
           `${API_URL}/hotel/all?page=${page}&sort=${sort.sort},${
@@ -45,10 +48,12 @@ const ListRice = () => {
       } catch (error) {
         console.log(error);
       }
+      setLoading(false)
     };
     getAllHotels();
   }, [sort, page, filterGenre,options]);
   const handleClick = async () => {
+    setLoading(true)
     setPage(1);
     const { data } = await axios.get(
       `${API_URL}/hotel/all?page=${page}&sort=${sort.sort},${
@@ -58,6 +63,7 @@ const ListRice = () => {
       }&max=${options.maximum}&distance=${options.distance}`
     );
     setList(data.hotels);
+    setLoading(false)
   };
   const handleChange = (e) => {
     setOptions((prev) => ({
@@ -135,7 +141,11 @@ const ListRice = () => {
             </button>
           </div>
           <div className="listResult">
-            {list.length === 0 ? (
+            {
+            loading ? <img src={Loading} alt="" /> : 
+            
+            
+            list.length === 0 ? (
               <h1>No information yet! Please search again</h1>
             ) : (
               <div>
