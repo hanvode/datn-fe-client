@@ -31,10 +31,10 @@ const ListRice = () => {
   const [sort, setSort] = useState({ sort: "rating", order: "desc" });
   const [filterGenre, setFilterGenre] = useState([location.state.genre] || []);
   const [page, setPage] = useState(1);
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getAllHotels = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const { data } = await axios.get(
           `${API_URL}/hotel/all?page=${page}&sort=${sort.sort},${
@@ -48,12 +48,12 @@ const ListRice = () => {
       } catch (error) {
         console.log(error);
       }
-      setLoading(false)
+      setLoading(false);
     };
     getAllHotels();
-  }, [sort, page, filterGenre,options]);
+  }, [sort, page, filterGenre, options]);
   const handleClick = async () => {
-    setLoading(true)
+    setLoading(true);
     setPage(1);
     const { data } = await axios.get(
       `${API_URL}/hotel/all?page=${page}&sort=${sort.sort},${
@@ -63,7 +63,7 @@ const ListRice = () => {
       }&max=${options.maximum}&distance=${options.distance}`
     );
     setList(data.hotels);
-    setLoading(false)
+    setLoading(false);
   };
   const handleChange = (e) => {
     setOptions((prev) => ({
@@ -141,11 +141,9 @@ const ListRice = () => {
             </button>
           </div>
           <div className="listResult">
-            {
-            loading ? <img src={Loading} alt="" /> : 
-            
-            
-            list.length === 0 ? (
+            {loading ? (
+              <img src={Loading} alt="" style={{ width: "50%" }} />
+            ) : list.length === 0 ? (
               <h1>No information yet! Please search again</h1>
             ) : (
               <div>
