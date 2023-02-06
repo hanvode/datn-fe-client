@@ -93,7 +93,7 @@ const Header = ({ type }) => {
           </div>
           <div className="headerListItem dropdown">
             <FontAwesomeIcon icon={faCity} />
-            <span className="label">City</span>
+            <span className="label">District</span>
             <ul className="cities">
               {city.loading
                 ? ""
@@ -133,11 +133,11 @@ const Header = ({ type }) => {
               Get rewarded for your meals – unlock instant savings of 15% or
               more with a free ComQuan account
             </p>
-            {!user ? (
+            {/* {!user ? (
               <button className="headerBtn">Sign in / Register</button>
             ) : (
               <></>
-            )}
+            )} */}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBowlRice} className="headerIcon" />
