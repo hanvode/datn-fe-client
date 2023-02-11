@@ -20,9 +20,9 @@ const FoodReview = () => {
               <span className="fpPrice"> 
                 Starting from {item.cheapestPrice}
               </span>
-              {item.rating && (
+              {item.numReviews > 0 && (
                 <div className="fpRating">
-                  <button>{item.rating}</button>
+                  <button>{(item.rating / item.numReviews).toFixed(2)}</button>
                   <span>Excellent</span>
                 </div>
               )}

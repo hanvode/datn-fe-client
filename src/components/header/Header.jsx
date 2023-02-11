@@ -89,7 +89,7 @@ const Header = ({ type }) => {
             onClick={() => navigate("/")}
           >
             <FontAwesomeIcon icon={faBowlRice} />
-            <span>Restaurant</span>
+            <span>Home</span>
           </div>
           <div className="headerListItem dropdown">
             <FontAwesomeIcon icon={faCity} />
