@@ -16,13 +16,17 @@ const ListFollowed = () => {
   useEffect(() => {
     const getAllHotelFollowed = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/user/all-followed/${user._id}`);
+        const { data } = await axios.get(
+          `${API_URL}/user/all-followed/${user?._id}`
+        );
         setList(data);
       } catch (error) {
         console.log(error);
       }
     };
-    getAllHotelFollowed();
+    if (user) {
+      getAllHotelFollowed();
+    }
   }, [user]);
 
   return (
@@ -32,11 +36,13 @@ const ListFollowed = () => {
       <div className="listContainerF">
         <div className="listWrapperF">
           <div className="listFollowed">
-            {list.length === 0  ? (
-              <h1 style={{margin: '70px 0'}}>You don't follow anything</h1>
+            {!user ? (
+              <h1 style={{ margin: "70px 0" }}>You must login</h1>
+            ) : list.length === 0 ? (
+              <h1 style={{ margin: "70px 0" }}>You don't follow anything</h1>
             ) : (
               <div>
-                  <h2 className="fTitle">Your Followed Hotel List</h2>
+                <h2 className="fTitle">Your Followed Hotel List</h2>
                 {list &&
                   list.map((item) => <SearchItem item={item} key={item._id} />)}
               </div>
