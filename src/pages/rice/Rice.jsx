@@ -233,7 +233,7 @@ const Rice = () => {
               {/* <span className="hotelTitleHighLight">{data.title}</span> */}
               <span className="hotelTitleHighLight">
                 {data?.genre?.map((genre) => (
-                  <span style={{ paddingRight: "8px" , border : '1px solid #008009' , borderRadius : '10px', textAlign : 'center', backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }} key={genre}>
+                  <span style={{ padding: "5px 8px", marginRight : '10px' , border : '1px solid #008009' , borderRadius : '10px', textAlign : 'center',fontWeight: '500',  backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }} key={genre}>
                     {genre}
                   </span>
                 ))}
