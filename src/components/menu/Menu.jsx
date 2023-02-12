@@ -42,7 +42,7 @@ const Menu = ({ setOpen, hotelId }) => {
   };
   return (
     <>
-      {user.isAdmin && user.hotelOwn.includes(hotelId) ? (
+      {user?.isAdmin && user?.hotelOwn?.includes(hotelId) ? (
         <div className="menu">
           <div className="mContainer">
             <FontAwesomeIcon
