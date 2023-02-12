@@ -130,11 +130,11 @@ const Rice = () => {
     //case user: show menu
     //case userChef: show menu can change, add, delete
     //case guest: navigate to login
-    if (user) {
+    // if (user) {
       setOpenMenu(true);
-    } else {
-      navigate("/login");
-    }
+    // } else {
+    //   navigate("/login");
+    // }
   };
   const handleMove = (direction) => {
     let newSlideNumber;
@@ -233,7 +233,7 @@ const Rice = () => {
               {/* <span className="hotelTitleHighLight">{data.title}</span> */}
               <span className="hotelTitleHighLight">
                 {data?.genre?.map((genre) => (
-                  <span style={{ paddingRight: "8px" }} key={genre}>
+                  <span style={{ paddingRight: "8px" , border : '1px solid #008009' , borderRadius : '5px', }} key={genre}>
                     {genre}
                   </span>
                 ))}
