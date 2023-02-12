@@ -13,9 +13,20 @@ const SearchItem = ({ item }) => {
         </span>
         <span className="siSubtitle">
           {item.genre.map((genre) => (
-            <span style={{ paddingRight: "5px" }} key={genre}>
-              {" "}
-              {genre}{" "}
+            <span
+              style={{
+                padding: "3px 5px",
+                marginRight: "10px",
+                border: "1px solid #008009",
+                borderRadius: "10px",
+                textAlign: "center",
+                fontWeight: "500",
+                backgroundColor: "rgba(0, 128, 0, 0.2)",
+                color: "green",
+              }}
+              key={genre}
+            >
+              {genre}
             </span>
           ))}
         </span>

@@ -27,7 +27,7 @@ import Heart from "../../components/images/heart.svg";
 import HeartFilled from "../../components/images/heartFilled.svg";
 import { API_URL } from "../../hooks/config";
 
-const ENDPOINT = "https://datn-comment-realtime.onrender.com/"
+const ENDPOINT = "https://datn-comment-realtime.onrender.com/";
 
 const Rice = () => {
   const location = useLocation();
@@ -54,7 +54,9 @@ const Rice = () => {
     setLoading(true);
     const getAllComments = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/comment/${id}?limit=${page * 5}`);
+        const { data } = await axios.get(
+          `${API_URL}/comment/${id}?limit=${page * 5}`
+        );
         setComments(data.comments);
         setLoading(false);
       } catch (error) {
@@ -131,7 +133,7 @@ const Rice = () => {
     //case userChef: show menu can change, add, delete
     //case guest: navigate to login
     // if (user) {
-      setOpenMenu(true);
+    setOpenMenu(true);
     // } else {
     //   navigate("/login");
     // }
@@ -233,7 +235,19 @@ const Rice = () => {
               {/* <span className="hotelTitleHighLight">{data.title}</span> */}
               <span className="hotelTitleHighLight">
                 {data?.genre?.map((genre) => (
-                  <span style={{ padding: "5px 8px", marginRight : '10px' , border : '1px solid #008009' , borderRadius : '10px', textAlign : 'center',fontWeight: '500',  backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }} key={genre}>
+                  <span
+                    style={{
+                      padding: "5px 8px",
+                      marginRight: "10px",
+                      border: "1px solid #008009",
+                      borderRadius: "10px",
+                      textAlign: "center",
+                      fontWeight: "500",
+                      backgroundColor: "rgba(0, 128, 0, 0.2)",
+                      color: "green",
+                    }}
+                    key={genre}
+                  >
                     {genre}
                   </span>
                 ))}
@@ -303,7 +317,12 @@ const Rice = () => {
                           />
                           <label htmlFor="rd-1" className="fas fa-star"></label>
                         </div>
-                        <CommentForm id={id} socket={socket} rating={rating} userId={user?._id} />{" "}
+                        <CommentForm
+                          id={id}
+                          socket={socket}
+                          rating={rating}
+                          userId={user?._id}
+                        />{" "}
                       </>
                     )}
                     <div className="comments_list">
