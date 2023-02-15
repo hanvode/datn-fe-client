@@ -31,6 +31,7 @@ const EditUser = () => {
         const data = new FormData();
         data.append("file", file);
         data.append("upload_preset", "upload");
+        axios.defaults.withCredentials = false;
         const uploadRes = await axios.post(
           "https://api.cloudinary.com/v1_1/dnykvbriw/image/upload",
           data
@@ -48,12 +49,17 @@ const EditUser = () => {
         e.target.form[5],
       ];
       let inputClassName = "editFormInput";
-      if (!checkRequired(inputArr, inputClassName)) {
-        if (!checkLength(e.target.form[4], 4, inputClassName)) {
-          const res = await axios.put(`${API_URL}/user/${info._id}`, newUser);
-          dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-          navigate("/");
+      try {
+        axios.defaults.withCredentials = true;
+        if (!checkRequired(inputArr, inputClassName)) {
+          if (!checkLength(e.target.form[4], 4, inputClassName)) {
+            const res = await axios.put(`${API_URL}/user/${info._id}`, newUser);
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+            navigate("/");
+          }
         }
+      } catch (error) {
+        console.log(error);
       }
     } catch (error) {
       console.log(error);

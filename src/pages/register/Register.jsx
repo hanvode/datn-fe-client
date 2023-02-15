@@ -5,7 +5,10 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { checkLength, checkRequired } from "../../components/validate/ValidateForm";
+import {
+  checkLength,
+  checkRequired,
+} from "../../components/validate/ValidateForm";
 import { API_URL } from "../../hooks/config";
 
 const Register = () => {
@@ -26,6 +29,7 @@ const Register = () => {
         ...info,
       };
       if (file !== "") {
+        axios.defaults.withCredentials = false;
         const uploadRes = await axios.post(
           "https://api.cloudinary.com/v1_1/dnykvbriw/image/upload",
           data
@@ -42,12 +46,17 @@ const Register = () => {
         e.target.form[4],
         e.target.form[5],
       ];
-      let inputClassName = "reFormInput"
-      if (!checkRequired(inputArr,inputClassName)) {
-        if (!checkLength(e.target.form[4], 4,inputClassName)) {
-          await axios.post(`${API_URL}/auth/register`, newUser);
-          navigate("/login");
+      let inputClassName = "reFormInput";
+      try {
+        axios.defaults.withCredentials = true;
+        if (!checkRequired(inputArr, inputClassName)) {
+          if (!checkLength(e.target.form[4], 4, inputClassName)) {
+            await axios.post(`${API_URL}/auth/register`, newUser);
+            navigate("/login");
+          }
         }
+      } catch (error) {
+        setError(error.response.data.message);
       }
     } catch (error) {
       setError(error.response.data.message);
