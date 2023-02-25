@@ -26,6 +26,7 @@ import axios from "axios";
 import Heart from "../../components/images/heart.svg";
 import HeartFilled from "../../components/images/heartFilled.svg";
 import { API_URL } from "../../hooks/config";
+import Map from "../../components/map/Map";
 
 const ENDPOINT = "https://datn-comment-realtime.onrender.com/";
 
@@ -38,6 +39,8 @@ const Rice = () => {
   const [openReview, setOpenReview] = useState(false);
   const [page, setPage] = useState(1);
   const pageEnd = useRef();
+
+  // const [coords, setCoords] = useState(null);
 
   const { data } = useFetch(`hotel/find/${id}`);
   const [loading, setLoading] = useState(false);
@@ -65,6 +68,19 @@ const Rice = () => {
     };
     getAllComments();
   }, [id, page]);
+
+  // useEffect(() => {
+  //   const getCoords = async () => {
+  //     // eslint-disable-next-line no-undef
+  //     const results = await geocodeByAddress(
+  //       `${data.address}, ${data.city}, Hanoi, Vietnam`
+  //     );
+  //     // eslint-disable-next-line no-undef
+  //     const latlng = await getLatLng(results[0]);
+  //     setCoords(latlng);
+  //   };
+  //   getCoords();
+  // }, [data]);
 
   useEffect(() => {
     setSocket(io(ENDPOINT));
@@ -272,6 +288,11 @@ const Rice = () => {
                 <div className="hotelDetailsTexts">
                   <h1 className="hotelTitle">{data.title}</h1>
                   <p className="hotelDesc">{data.desc}</p>
+                  <div>
+                    <Map
+                      defaultCenter={`${data.address}, ${data.city}, Hanoi, Vietnam`}
+                    />
+                  </div>
                   <div className="comments">
                     <h2 className="app_title">Realtime comment</h2>
                     {openReview && (

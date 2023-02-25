@@ -1,0 +1,14 @@
+.mapContainer {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+}
+
+.mapInput{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+}

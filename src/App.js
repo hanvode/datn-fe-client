@@ -15,8 +15,8 @@ function App() {
         <Route path="/list-rice" element={<ListRice />} />
         <Route path="/list-rice/:id" element={<Rice />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/edit" element={<EditUser/>} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/edit" element={<EditUser />} />
         <Route path="/list-followed" element={<ListFollowed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

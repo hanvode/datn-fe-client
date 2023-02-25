@@ -15,7 +15,6 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
-import { AuthContext } from "../../context/AuthenContext";
 import useFetch from "../../hooks/useFetch";
 
 const Header = ({ type }) => {
@@ -28,7 +27,6 @@ const Header = ({ type }) => {
   });
 
   const { dispatch } = useContext(SearchContext);
-  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const city = useFetch("hotel/findCity");
   const category = useFetch("hotel/findType");
@@ -119,7 +117,10 @@ const Header = ({ type }) => {
                   ))}
             </ul>
           </div>
-          <div className="headerListItem"  onClick={() => navigate("/list-followed")} >
+          <div
+            className="headerListItem"
+            onClick={() => navigate("/list-followed")}
+          >
             <FontAwesomeIcon icon={faHeart} />
             <span>Followed</span>
           </div>
@@ -133,11 +134,6 @@ const Header = ({ type }) => {
               Get rewarded for your meals – unlock instant savings of 15% or
               more with a free ComQuan account
             </p>
-            {/* {!user ? (
-              <button className="headerBtn">Sign in / Register</button>
-            ) : (
-              <></>
-            )} */}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBowlRice} className="headerIcon" />
