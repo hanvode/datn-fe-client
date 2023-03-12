@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch.js";
+import Loading from "./../images/loading.gif";
 import "./featured.css";
 
 const Featured = () => {
@@ -27,7 +28,9 @@ const Featured = () => {
   return (
     <div className="featured">
       {countCity.loading ? (
-        "Loading data please wait"
+        <div>
+          <img src={Loading} alt="" style={{ width: "50%" }} />
+        </div>
       ) : (
         <>
           {countCity.data &&

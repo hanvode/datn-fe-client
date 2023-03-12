@@ -87,7 +87,6 @@ const Map = ({ defaultCenter }) => {
         bgcolor="white"
         shadow="base"
         width="659px"
-        zIndex="1"
       >
         <Stack
           display="flex"

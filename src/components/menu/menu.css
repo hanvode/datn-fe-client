@@ -11,14 +11,14 @@
 }
 
 .mContainer{
-      max-height: 380px;
+      max-height: 450px;
       background-color: white;
       padding: 20px;
-      position: relative;
+      /* position: relative; */
       overflow: auto;
 }
 .mClose{
-      position: absolute;
+      position: sticky;
       top: 0;
       left: 0;
       cursor: pointer;
@@ -86,4 +86,6 @@
       border-radius:  5px;
       width: 100%;
       margin-top: 20px;
+      position: sticky;
+      bottom: 0;
 }

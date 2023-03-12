@@ -11,7 +11,7 @@ import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
@@ -20,13 +20,13 @@ import Menu from "../../components/menu/Menu";
 import { io } from "socket.io-client";
 import Rating from "../../components/rating/Rating";
 import CommentForm from "../../components/commentForm/CommentForm";
-import CommentItem from "../../components/commentItem/CommentItem";
-import Loading from "./../../components/images/loading.gif";
 import axios from "axios";
 import Heart from "../../components/images/heart.svg";
 import HeartFilled from "../../components/images/heartFilled.svg";
 import { API_URL } from "../../hooks/config";
 import Map from "../../components/map/Map";
+import Loading from "./../../components/images/loading.gif";
+import ListComments from "../../components/listComment/ListComments";
 
 const ENDPOINT = "https://datn-comment-realtime.onrender.com/";
 
@@ -38,12 +38,11 @@ const Rice = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openReview, setOpenReview] = useState(false);
   const [page, setPage] = useState(1);
-  const pageEnd = useRef();
+  // const pageEnd = useRef();
 
   // const [coords, setCoords] = useState(null);
 
-  const { data } = useFetch(`hotel/find/${id}`);
-  const [loading, setLoading] = useState(false);
+  const { data, loading } = useFetch(`hotel/find/${id}`);
   const { user, dispatch } = useContext(AuthContext);
   const [follow, setFollow] = useState(user?.followings.includes(id));
   // console.log(user);
@@ -53,21 +52,22 @@ const Rice = () => {
   // console.log(comments)
   const [socket, setSocket] = useState(null);
   //load all Comments
-  useEffect(() => {
-    setLoading(true);
-    const getAllComments = async () => {
-      try {
-        const { data } = await axios.get(
-          `${API_URL}/comment/${id}?limit=${page * 5}`
-        );
-        setComments(data.comments);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getAllComments();
-  }, [id, page]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const getAllComments = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `${API_URL}/comment/${id}?page=${page}`
+  //       );
+  //       setComments(data.comments);
+  //       setTotalPage(data.total);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getAllComments();
+  // }, [id, page]);
 
   // useEffect(() => {
   //   const getCoords = async () => {
@@ -102,19 +102,19 @@ const Rice = () => {
   }, [socket, comments]);
 
   //infinity scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setPage((prev) => prev + 1);
-        }
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-    observer.observe(pageEnd.current);
-  }, []);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       if (entries[0].isIntersecting) {
+  //         setPage((prev) => prev + 1);
+  //       }
+  //     },
+  //     {
+  //       threshold: 0.1,
+  //     }
+  //   );
+  //   observer.observe(pageEnd.current);
+  // }, []);
 
   //Reply comment
   useEffect(() => {
@@ -195,7 +195,9 @@ const Rice = () => {
       <Navbar />
       <Header type="list" />
       {loading ? (
-        "Waiting for loading"
+        <div>
+          <img src={Loading} alt="" style={{ width: "50%" }} />
+        </div>
       ) : (
         <>
           <div className="hotelContainer">
@@ -346,7 +348,7 @@ const Rice = () => {
                         />{" "}
                       </>
                     )}
-                    <div className="comments_list">
+                    {/* <div className="comments_list">
                       {comments?.map((comment) => (
                         <CommentItem
                           key={comment._id}
@@ -354,16 +356,22 @@ const Rice = () => {
                           socket={socket}
                         />
                       ))}
-                    </div>
+                    </div> */}
+                    <ListComments
+                      id={id}
+                      page={page}
+                      setPage={setPage}
+                      socket={socket}
+                      comments={comments}
+                      setComments={setComments}
+                    />
                   </div>
-                  {loading && (
-                    <div className="loading">
-                      <img src={Loading} alt="" />
-                    </div>
-                  )}
-                  <button ref={pageEnd} style={{ opacity: 0 }}>
-                    Load more comments
-                  </button>
+                  {/* <Pagination
+                    page={page}
+                    limit={5}
+                    total={totalPage}
+                    setPage={(page) => setPage(page)}
+                  /> */}
                 </div>
                 <div className="hotelDetailsPrice">
                   <h1>Perfect meal for a good day!</h1>

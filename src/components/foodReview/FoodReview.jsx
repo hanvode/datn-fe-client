@@ -1,13 +1,16 @@
 import useFetch from "../../hooks/useFetch";
 import "./foodReview.css";
 import { Link } from "react-router-dom";
+import Loading from "./../images/loading.gif";
 
 const FoodReview = () => {
   const featuredHotel = useFetch(`hotel?featured=true&limit=4`);
   return (
     <div className="fp">
       {featuredHotel.loading ? (
-        "Loading please wait"
+        <div>
+          <img src={Loading} alt="" style={{ width: "50%" }} />
+        </div>
       ) : (
         <>
           {featuredHotel.data.map((item) => (
@@ -16,8 +19,11 @@ const FoodReview = () => {
                 <img src={item.photos[0]} alt="" className="fpImg" />
               </Link>
               <span className="fpName">{item.name}</span>
-              <span className="fpCity"> {item.address} - {item.city}</span>
-              <span className="fpPrice"> 
+              <span className="fpCity">
+                {" "}
+                {item.address} - {item.city}
+              </span>
+              <span className="fpPrice">
                 Starting from {item.cheapestPrice}
               </span>
               {item.numReviews > 0 && (

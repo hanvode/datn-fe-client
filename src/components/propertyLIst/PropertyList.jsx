@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch.js";
+import Loading from "./../images/loading.gif";
 import "./propertyList.css";
 
 const PropertyList = () => {
@@ -20,7 +21,9 @@ const PropertyList = () => {
   return (
     <div className="pList">
       {typeCount.loading ? (
-        "Loading data please wait"
+        <div>
+          <img src={Loading} alt="" style={{ width: "50%" }} />
+        </div>
       ) : (
         <>
           {typeCount.data &&

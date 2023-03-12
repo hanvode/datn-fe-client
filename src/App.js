@@ -6,7 +6,7 @@ import ListRice from "./pages/list/ListRice";
 import Login from "./pages/login/Login";
 import NotFound from "./pages/notFound/NotFound";
 import Register from "./pages/register/Register";
-import Rice from "./pages/rice/Rice";
+import Rice from "./pages/diner/Rice";
 function App() {
   return (
     <BrowserRouter>
