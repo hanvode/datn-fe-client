@@ -8,7 +8,7 @@ const Featured = () => {
   const navigate = useNavigate();
   const images = [
     "https://media1.nguoiduatin.vn/media/ngac-kim-giang/2021/03/28/top-5-nha-hang-sang-trong-ha-noi-steak1.jpg",
-    "https://reviewtop.vn/wp-content/uploads/2021/03/quan-an-ngon-o-hoang-mai4.jpg",
+    "https://toplist.vn/images/800px/nha-hang-dimsum-amp-lau-trung-hoa-fenghuang-339289.jpg",
     "https://foodi.com.vn/wp-content/uploads/2021/06/bo-to-quan-moc-4-1.jpg",
     "https://cdn.jamja.vn/blog/wp-content/uploads/2019/12/nha-hang-to-chuc-lien-hoan-cong-ty.jpg",
   ];
