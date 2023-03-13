@@ -22,6 +22,7 @@
 }
 .navItems {
   display: flex;
+  gap: 10px;
 }
 .navAvatar{
   display: flex;
@@ -41,4 +42,43 @@
   cursor: pointer;
   color: #003580;
   font-weight: 500;
+}
+.item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.counter {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.notifications {
+  position: absolute;
+  top: 30px;
+  right: -94px;
+  background-color: white;
+  color: black;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  z-index: 1;
+  width: max-content;
+}
+
+.notification {
+  padding: 5px;
+  font-size: 14px;
 }

@@ -17,7 +17,6 @@ import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthenContext";
 import Menu from "../../components/menu/Menu";
-import { io } from "socket.io-client";
 import Rating from "../../components/rating/Rating";
 import CommentForm from "../../components/commentForm/CommentForm";
 import axios from "axios";
@@ -28,9 +27,7 @@ import Map from "../../components/map/Map";
 import Loading from "./../../components/images/loading.gif";
 import ListComments from "../../components/listComment/ListComments";
 
-const ENDPOINT = "https://datn-comment-realtime.onrender.com/";
-
-const Rice = () => {
+const Rice = ({ socket }) => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
@@ -50,7 +47,6 @@ const Rice = () => {
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState([]);
   // console.log(comments)
-  const [socket, setSocket] = useState(null);
   //load all Comments
   // useEffect(() => {
   //   setLoading(true);
@@ -81,10 +77,6 @@ const Rice = () => {
   //   };
   //   getCoords();
   // }, [data]);
-
-  useEffect(() => {
-    setSocket(io(ENDPOINT));
-  }, []);
 
   useEffect(() => {
     if (socket) {
@@ -173,12 +165,32 @@ const Rice = () => {
         navigate("/login");
       } else {
         if (follow) {
+          let createdAt = new Date().toISOString();
+          socket.emit("follow", {
+            content: `${user.username} unfollow ${data.name}`,
+            followOwnerId: data.hotelOwnerId,
+            createdAt,
+          });
+          await axios.post(`${API_URL}/user/notification`, {
+            content: `${user.username} unfollow ${data.name}`,
+            followOwnerId: [data.hotelOwnerId],
+          });
           const res = await axios.put(`${API_URL}/user/${id}/unfollow`, {
             userId: user?._id,
           });
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
           setFollow(false);
         } else {
+          let createdAt = new Date().toISOString();
+          socket.emit("follow", {
+            content: `${user.username} follow ${data.name}`,
+            followOwnerId: data.hotelOwnerId,
+            createdAt,
+          });
+          await axios.post(`${API_URL}/user/notification`, {
+            content: `${user.username} follow ${data.name}`,
+            followOwnerId: [data.hotelOwnerId],
+          });
           const res = await axios.put(`${API_URL}/user/${id}/follow`, {
             userId: user?._id,
           });
