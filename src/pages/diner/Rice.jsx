@@ -26,6 +26,7 @@ import { API_URL } from "../../hooks/config";
 import Map from "../../components/map/Map";
 import Loading from "./../../components/images/loading.gif";
 import ListComments from "../../components/listComment/ListComments";
+import VideoPlayer from "../../components/videoPlayer/VideoPlayer";
 
 const Rice = ({ socket }) => {
   const location = useLocation();
@@ -46,6 +47,7 @@ const Rice = ({ socket }) => {
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState([]);
+
   // console.log(comments)
   //load all Comments
   // useEffect(() => {
@@ -202,6 +204,8 @@ const Rice = ({ socket }) => {
       console.log(error);
     }
   };
+  console.log(data?.photos);
+
   return (
     <div>
       <Navbar />
@@ -226,11 +230,24 @@ const Rice = ({ socket }) => {
                   onClick={() => handleMove("l")}
                 />
                 <div className="sliderWrapper">
-                  <img
-                    src={data.photos[slideNumber]}
-                    alt=""
-                    className="slideImg"
-                  />
+                  {data?.photos[slideNumber].split("/")[4] === "video" ? (
+                    <div className="slideImg">
+                      <VideoPlayer
+                        id="demo-player"
+                        publicId={`${data?.photos[slideNumber]
+                          .split("/")[7]
+                          .slice(0, 20)}`}
+                        width="538px"
+                        height="452px"
+                      />
+                    </div>
+                  ) : (
+                    <img
+                      src={data.photos[slideNumber]}
+                      alt=""
+                      className="slideImg"
+                    />
+                  )}
                 </div>
                 <FontAwesomeIcon
                   icon={faCircleArrowRight}
@@ -289,12 +306,23 @@ const Rice = ({ socket }) => {
               <div className="hotelImages">
                 {data.photos?.map((photo, index) => (
                   <div className="hotelImgWrapper" key={index}>
-                    <img
-                      onClick={() => handleOpen(index)}
-                      src={photo}
-                      alt=""
-                      className="hotelImg"
-                    />
+                    {photo.split("/")[4] === "video" ? (
+                      <div>
+                        <VideoPlayer
+                          id="demo-player"
+                          publicId={`${photo.split("/")[7].slice(0, 20)}`}
+                          width="338px"
+                          height="452px"
+                        />
+                      </div>
+                    ) : (
+                      <img
+                        onClick={() => handleOpen(index)}
+                        src={photo}
+                        alt=""
+                        className="hotelImg"
+                      />
+                    )}
                   </div>
                 ))}
               </div>
